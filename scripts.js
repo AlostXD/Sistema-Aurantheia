@@ -92,6 +92,7 @@ function carregarDespesasPorCidade() {
             <input type="number" class="quantidade" value="${despesa.quantidade}" min="0" placeholder="Quantidade">
             <input type="number" class="valor" placeholder="Valor" value="${despesa.valor}" min="0" step="0.01" placeholder="Valor">
         `;
+        adicionarBotaoApagar(li, ul);
         ul.appendChild(li);
     });
 }
@@ -124,6 +125,7 @@ function carregarProventosPorCidade() {
             <input type="number" class="quantidade" value="${provento.quantidade}" min="0" placeholder="Quantidade">
             <input type="number" class="valor" placeholder="Valor" value="${provento.valor}" min="0" step="0.01" placeholder="Valor">
         `;
+        adicionarBotaoApagar(li, ul);
         ul.appendChild(li);
     });
 }
@@ -143,6 +145,7 @@ document.getElementById('adicionar').addEventListener('click', () => {
         <input type="number" class="quantidade" value="0" min="0" placeholder="Quantidade">
         <input type="number" class="valor" placeholder="Valor" value="0" min="0" step="0.01" placeholder="Valor">
     `;
+    adicionarBotaoApagar(li, ul);
     ul.appendChild(li);
     salvarDespesasPorCidade();
 });
@@ -156,6 +159,7 @@ document.getElementById('adicionarProvento').addEventListener('click', () => {
         <input type="number" class="quantidade" value="0" min="0" placeholder="Quantidade">
         <input type="number" class="valor" placeholder="Valor" value="0" min="0" step="0.01" placeholder="Valor">
     `;
+    adicionarBotaoApagar(li, ul);
     ul.appendChild(li);
     salvarProventosPorCidade();
 });
@@ -234,6 +238,30 @@ function atualizarSaldoTotal() {
 
     const saldoTotal = totalProventos - totalDespesas;
     document.getElementById('resultadoFinal').textContent = `Saldo Total: ${saldoTotal.toFixed(0)} pratas`;
+}
+
+function adicionarBotaoApagar(li, lista) {
+    const botaoApagar = document.createElement('button');
+    botaoApagar.textContent = 'Apagar';
+    botaoApagar.style.marginLeft = '10px';
+    botaoApagar.style.background = '#dc3545';
+    botaoApagar.style.color = '#fff';
+    botaoApagar.style.border = 'none';
+    botaoApagar.style.padding = '5px 10px';
+    botaoApagar.style.borderRadius = '4px';
+    botaoApagar.style.cursor = 'pointer';
+
+    botaoApagar.addEventListener('click', () => {
+        lista.removeChild(li);
+        if (lista.id === 'despesas') {
+            salvarDespesasPorCidade();
+        } else if (lista.id === 'proventos') {
+            salvarProventosPorCidade();
+        }
+        atualizarSaldoTotal();
+    });
+
+    li.appendChild(botaoApagar);
 }
 
 // Carrega as despesas e proventos ao carregar a página
