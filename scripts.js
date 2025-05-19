@@ -185,6 +185,7 @@ document.getElementById('calcular').addEventListener('click', () => {
     resultadoUl.appendChild(totalLi);
 
     salvarDespesasPorCidade();
+    atualizarSaldoTotal();
 });
 
 document.getElementById('calcularProventos').addEventListener('click', () => {
@@ -212,7 +213,28 @@ document.getElementById('calcularProventos').addEventListener('click', () => {
     resultadoUl.appendChild(totalLi);
 
     salvarProventosPorCidade();
+    atualizarSaldoTotal();
 });
+
+function atualizarSaldoTotal() {
+    const despesasUl = document.getElementById('resultadoDespesas');
+    const proventosUl = document.getElementById('resultadoProventos');
+    let totalDespesas = 0;
+    let totalProventos = 0;
+
+    despesasUl.querySelectorAll('li').forEach(li => {
+        const valor = parseFloat(li.textContent.split('=')[1]) || 0;
+        totalDespesas += valor;
+    });
+
+    proventosUl.querySelectorAll('li').forEach(li => {
+        const valor = parseFloat(li.textContent.split('=')[1]) || 0;
+        totalProventos += valor;
+    });
+
+    const saldoTotal = totalProventos - totalDespesas;
+    document.getElementById('resultadoFinal').textContent = `Saldo Total: ${saldoTotal.toFixed(0)} pratas`;
+}
 
 // Carrega as despesas e proventos ao carregar a página
 window.addEventListener('load', () => {
