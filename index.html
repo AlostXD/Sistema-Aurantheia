@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Aurantheia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="formulario">
+        <label for="cidade">Escolha uma cidade:</label>
+        <select id="cidade">
+            <option value="Talthar">Talthar</option>
+            <option value="Northung">Northung</option>
+            <option value="Valery">Valery</option>
+            <option value="Gauvadon">Gauvadon</option>
+            <option value="Cumberlands">Cumberlands</option>
+        </select>
+
+        <h1>Despesas</h1>
+        <ul id="despesas">
+        </ul>
+        <button type="button" id="adicionar">Adicionar</button>
+        <button type="button" id="calcular">Calcular Total</button>
+        <h2>Total de despesas:</h2>
+        <ul id="resultadoDespesas"></ul>
+
+        <h1>Proventos</h1>
+        <ul id="proventos">
+        </ul>
+        <button type="button" id="adicionarProvento">Adicionar Provento</button>
+        <button type="button" id="calcularProventos">Calcular Total de Proventos</button>
+        <h2>Total de proventos:</h2>
+        <ul id="resultadoProventos"></ul>
+    </form>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
